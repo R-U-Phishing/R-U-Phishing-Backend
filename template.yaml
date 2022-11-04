@@ -11,6 +11,18 @@ Resources:
 #        Authorizers:
 #          MyLambdaTokenAuthorizer:
 #            FunctionArn: !GetAtt RUPhishingBackendLambdaFunction.Arn
+#  https://docs.aws.amazon.com/ko_kr/serverless-application-model/latest/developerguide/sam-resource-api.html#sam-api-methodsettings
+  RUPhishingBackendApi:
+    Type: AWS::Serverless::Api
+    Properties:
+      StageName: prod
+      CacheClusterEnabled: true
+      CacheClusterSize: '0.5'
+      MethodSettings:
+        - ResourcePath: /
+          HttpMethod: GET
+          CachingEnabled: true
+          CacheTtlInSeconds: 300
   RUPhishingBackendLambdaFunction:
     Type: AWS::Serverless::Function
     Properties:
