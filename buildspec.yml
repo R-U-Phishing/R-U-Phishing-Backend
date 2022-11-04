@@ -16,7 +16,7 @@ phases:
     commands:
       - echo "Build phase.."
       - sam build
-      - sam deploy --stack-name "r-u-phishing-backend" --no-confirm-changeset --no-fail-on-empty-changeset
+      - sam deploy --stack-name "r-u-phishing-backend" --no-confirm-changeset --no-fail-on-empty-changeset --image-repository r-u-phishing-backend
 
 
   post_build:
