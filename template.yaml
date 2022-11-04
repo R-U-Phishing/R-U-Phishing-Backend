@@ -11,6 +11,9 @@ Resources:
         MyApi:
           Type: Api
           Properties:
+            Auth:
+              ApiKeyRequired: true
+              Authorizer: NONE
             Path: /hello-world
             Method: get
     Metadata:
