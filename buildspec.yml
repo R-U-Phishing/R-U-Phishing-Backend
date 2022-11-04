@@ -28,6 +28,6 @@ phases:
 #    files:
 #      - ./junit.xml
 
-artifacts:
-  files:
-    -
+#artifacts:
+#  files:
+#    -
