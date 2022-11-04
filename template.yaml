@@ -15,7 +15,7 @@ Resources:
             Method: get
     Metadata:
       DockerTag: r-u-phishing-backend
-      DockerContext: ./src
+      DockerContext: .
       Dockerfile: Dockerfile
 
 
