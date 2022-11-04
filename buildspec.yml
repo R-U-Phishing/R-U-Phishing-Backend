@@ -1,21 +1,22 @@
 version: 0.2
 
 phases:
-  install:
-    runtime-version:
-      python: 3.8
-    commands:
-      - pip3 install pytest
+#  install:
+#    runtime-version:
+#      python: 3.8
+#    commands:
+#      - pip3 install pytest
 
   pre_build:
     commands:
       - echo "Pre build phase.."
-      - pytest --junit.xml ./junit.xml
+#      - pytest --junit.xml ./junit.xml
 
   build:
     commands:
       - echo "Build phase.."
       - sam build
+      - sam deploy --stack-name "r-u-phishing-backend" --no-confirm-changeset --no-fail-on-empty-changeset
 
 
   post_build:

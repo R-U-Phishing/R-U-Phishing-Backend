@@ -2,7 +2,7 @@ AWSTemplateFormatVersion: '2010-09-09'
 Transform: AWS::Serverless-2016-10-31
 
 Resources:
-  MyLambdaFunction:
+  RUPhishingBackendLambdaFunction:
     Type: AWS::Serverless::Function
     Properties:
       PackageType: Image
@@ -17,3 +17,9 @@ Resources:
       DockerTag: r-u-phishing-backend
       DockerContext: ./src
       Dockerfile: Dockerfile
+
+
+Outputs:
+  RUPhishingBackendLambdaFunction:
+    Description: "R-U-Phishing Backend Lambda Function ARN"
+    Value: !GetAtt RUPhishingBackendLambdaFunction.Arn
