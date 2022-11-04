@@ -14,7 +14,7 @@ Resources:
             Path: /hello-world
             Method: get
     Metadata:
-      DockerTag: r-u-phishing-backend
+      DockerTag: latest
       DockerContext: .
       Dockerfile: Dockerfile
 
