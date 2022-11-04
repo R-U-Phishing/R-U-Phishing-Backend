@@ -1,0 +1,19 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Transform: AWS::Serverless-2016-10-31
+
+Resources:
+  MyLambdaFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      PackageType: Image
+      FunctionName: wsi-api-function
+      Events:
+        MyApi:
+          Type: Api
+          Properties:
+            Path: /hello-world
+            Method: get
+    Metadata:
+      DockerTag: r-u-phishing-backend
+      DockerContext: ./src
+      Dockerfile: Dockerfile
