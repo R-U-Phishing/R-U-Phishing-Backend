@@ -8,7 +8,7 @@ Resources:
       PackageType: Image
       FunctionName: wsi-api-function
       Events:
-        MyApi:
+        EventApi:
           Type: Api
           Properties:
             Auth:
