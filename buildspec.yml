@@ -23,10 +23,10 @@ phases:
     commands:
       - echo "Post build phase.."
 
-reports:
-  arn:aws:codebuild:$AWS_REGION:$ACCOUNT_ID:report-group/r-u-phishing-backend-report-group:
-    files:
-      - ./junit.xml
+#reports:
+#  arn:aws:codebuild:$AWS_REGION:$ACCOUNT_ID:report-group/r-u-phishing-backend-report-group:
+#    files:
+#      - ./junit.xml
 
 artifacts:
   files:
