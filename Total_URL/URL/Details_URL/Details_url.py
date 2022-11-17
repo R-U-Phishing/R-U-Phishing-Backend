@@ -11,11 +11,11 @@ from datetime import datetime as dt
 from tld import get_tld
 
 def Detail_URL(url):
-    # # Replace url in 'www'
-    # if 'www.' in input_url:
-    #     url = input_url.replace('www.','')
-    # else:
-    #     url = input_url
+    # Replace url in 'www'
+    if 'www.' in url:
+         url = url.replace('www.','')
+    else:
+         url = url
 
     # Http_status_code & Title
     requests_url = requests.get(url, timeout=5)
@@ -35,10 +35,10 @@ def Detail_URL(url):
     # Ip_address                              
     if 'https://' in url:
         url = url.replace('https://', '')
-        id_address = socket.gethostbyname(url)
+        ip_address = socket.gethostbyname(url)
     elif 'http://' in url:
         url = url.replace('http://', '')
-        id_address = socket.gethostbyname(url)
+        ip_address = socket.gethostbyname(url)
 
     # Registration
     domain_info = whois.whois(url)
@@ -54,7 +54,7 @@ def Detail_URL(url):
     json_object = {
         "url": url,
         "title": title,
-        "id_address": id_address,
+        "ip_address": ip_address,
         "http_status_code": http_status_code,
         "domain": domain,
         "subdomain": subdomain,
