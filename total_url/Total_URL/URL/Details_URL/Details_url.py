@@ -23,7 +23,10 @@ def Detail_URL(url):
 
     html = requests_url.text
     soup = BeautifulSoup (html, 'html.parser')
-    title = soup.title.string.upper().split(' ')[0]
+    if len(soup) <= 0:
+        title = None;
+    else:
+        title = soup.title.string.upper().split(' ')[0]
 
     # Subdomain, Domain                                              
     tld = get_tld(url, as_object=True)
@@ -32,24 +35,30 @@ def Detail_URL(url):
     if not subdomain:
         subdomain = None
 
-    # Ip_address                              
-    if 'https://' in url:
-        url = url.replace('https://', '')
-        ip_address = socket.gethostbyname(url)
-    elif 'http://' in url:
-        url = url.replace('http://', '')
-        ip_address = socket.gethostbyname(url)
+    # Ip_address   
+    try:
+        if 'https://' in url:
+            url = url.replace('https://', '')
+            ip_address = socket.gethostbyname(url)
+        elif 'http://' in url:
+            url = url.replace('http://', '')
+            ip_address = socket.gethostbyname(url)
+    except socket.gaierror as e:
+        ip_address = None
 
     # Registration
     domain_info = whois.whois(url)
     init_date = domain_info["creation_date"]
-    if isinstance(init_date, list):
-        for init in init_date:
-            Registration = init.date()
+    if init_date == None:
+        date = None
+    else :    
+        if isinstance(init_date, list):
+            for init in init_date:
+                Registration = init.date()
+                date = Registration.strftime('%Y-%m-%d')
+        else:
+            Registration = init_date.date()
             date = Registration.strftime('%Y-%m-%d')
-    else:
-        Registration = init_date.date()
-        date = Registration.strftime('%Y-%m-%d')
 
     json_object = {
         "url": url,

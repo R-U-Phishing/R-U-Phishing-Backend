@@ -4,6 +4,7 @@ import re
 import ssl
 from urllib.request import urlopen
 from .Patterns import *
+ 
 
 def Check_Short(input_url):
     context = ssl._create_unverified_context()
