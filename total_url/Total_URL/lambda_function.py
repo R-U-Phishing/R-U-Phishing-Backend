@@ -67,11 +67,11 @@ def lambda_handler(event, context):
                 cur.execute('SELECT input_url, title, long_url, ip_address, http_status_code, domain, subdomain, check_date, result, Registration FROM url_table WHERE input_url LIKE "%{0}%"'.format(details_url['url']))
                 result = cur.fetchall()
                 
-                cur.execute('update rank_url set count = 1 + (select count from (select count from rank_url where url="{0}") a ) where url="{1}"'.format(details_url['url'], details_url['url']))
+                cur.execute('update rank_url set count = count + 1 where url="{0}"'.format(details_url['url']))
                 conn.commit()
                 return json.loads(json.dumps(result, default=str))
         else :
             details_url = Detail_URL(url)
-            cur.execute('update rank_url set count = 1 + (select count from (select count from rank_url where url="{0}") a ) where url="{1}"'.format(details_url['url'], details_url['url']))
+            cur.execute('update rank_url set count = count + 1 where url="{0}"'.format(details_url['url']))
             conn.commit()
             return json.loads(json.dumps(result, default=str))
